@@ -5,6 +5,8 @@ let canvasSize;
 let elementsSize;
 let mapRowCols;
 let playerPosition = {x: undefined, y: undefined};
+let level = 0;
+let lives = 3;
 
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
@@ -18,7 +20,10 @@ function setCanvasSize()
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
     elementsSize = canvasSize / 10;
-    startGame();
+    game.font = elementsSize + 'px sans-serif';
+    game.textAlign = 'end';
+    setMapRowCols();
+    drawMap();
 }
 function drawEmoji(x, y, emoji)
 {
@@ -41,19 +46,12 @@ function drawMap()
     });
     drawEmoji(playerPosition.x, playerPosition.y, emojis['PLAYER']);
 }
-function startGame()
+function setMapRowCols()
 {
-    game.font = elementsSize + 'px sans-serif';
-    game.textAlign = 'end';
-
     // trim elimina los espacios en blanco al inicio y final de la cadena
     // split separa la cadena por el caracter que se pasa como argumento en un arreglo de cadenas
-    const mapRows = maps[0].trim().split('\n');
+    const mapRows = maps[level].trim().split('\n');
     mapRowCols = mapRows.map(row => row.trim().split(''));
-    drawMap();
-    // for (let y=1; y<=10; y++)
-    //     for (let x=1; x<=10; x++)
-    //         game.fillText(emojis[mapRowCols[y-1][x-1]], elementsSize * x + 4, elementsSize * y - 4);
 }
 
 const btnUp = document.querySelector('#up');
@@ -78,6 +76,31 @@ function movePlayer(incX, incY)
     {
         playerPosition.x += incX;
         playerPosition.y += incY;
+        const emoji = emojis[mapRowCols[playerPosition.y][playerPosition.x]];
+        if (emoji == '🎁' || emoji == '💣')
+        {
+            let endGame = false;
+            if (emoji == '💣')
+            {
+                lives--;
+                if (lives == 0)
+                {
+                    lives = 3;
+                    level = 0;
+                }  
+            }
+            else if (emoji == '🎁')
+            {
+                if (level == maps.length - 1)
+                {
+                    console.log('Terminaste el juego');
+                    endGame = true;
+                }
+                else    level++;
+            }
+            if (!endGame) playerPosition.x = undefined;
+            setMapRowCols();
+        }
         drawMap();
     }
 }
