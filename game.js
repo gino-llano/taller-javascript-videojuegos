@@ -7,10 +7,33 @@ let mapRowCols;
 let playerPosition = {x: undefined, y: undefined};
 let level = 0;
 let lives = 3;
+let timeStart;
 
-window.addEventListener('load', setCanvasSize);
+const spanLives = document.querySelector('#lives');
+const spanTime = document.querySelector('#time');
+
+window.addEventListener('load', startGame);
 window.addEventListener('resize', setCanvasSize);
+const timer = setInterval(drawTime, 1000);
 
+function startGame()
+{
+    timeStart = Date.now();
+    drawTime();
+    drawLives();
+    setCanvasSize();
+}
+function gameOver()
+{
+    lives = 3;
+    level = 0;
+    playerPosition.x = undefined;
+    timeStart = Date.now();
+    drawTime();
+    drawLives();
+    setMapRowCols();
+    drawMap();
+}
 function setCanvasSize()
 {
     if (window.innerWidth > window.innerHeight)
@@ -30,6 +53,16 @@ function drawEmoji(x, y, emoji)
     const posX = elementsSize * (x + 1) + elementsSize * 0.20;
     const posY = elementsSize * (y + 1) - elementsSize * 0.15;
     game.fillText(emoji, posX, posY);
+}
+function drawLives()
+{
+    spanLives.innerHTML = emojis['HEART'].repeat(lives);
+}
+function drawTime()
+{
+    const timeLeft = 20 - ((Date.now() - timeStart) / 1000).toFixed(0);
+    if (timeLeft == 0)  return gameOver();
+    spanTime.innerHTML = timeLeft;
 }
 function drawMap()
 {
@@ -77,28 +110,21 @@ function movePlayer(incX, incY)
         playerPosition.x += incX;
         playerPosition.y += incY;
         const emoji = emojis[mapRowCols[playerPosition.y][playerPosition.x]];
-        if (emoji == '🎁' || emoji == '💣')
+        if (emoji == '💣')
         {
-            let endGame = false;
-            if (emoji == '💣')
+            lives--;
+            if (lives == 0) return gameOver();
+            drawLives();
+            playerPosition.x = undefined;
+        }   
+        else if (emoji == '🎁')
+        {
+            if (level == maps.length - 1)
             {
-                lives--;
-                if (lives == 0)
-                {
-                    lives = 3;
-                    level = 0;
-                }  
+                console.log('Terminaste el juego');
+                clearInterval(timer);
             }
-            else if (emoji == '🎁')
-            {
-                if (level == maps.length - 1)
-                {
-                    console.log('Terminaste el juego');
-                    endGame = true;
-                }
-                else    level++;
-            }
-            if (!endGame) playerPosition.x = undefined;
+            else    level++;
             setMapRowCols();
         }
         drawMap();
