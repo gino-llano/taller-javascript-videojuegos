@@ -9,6 +9,7 @@ const emojis = {
     WIN: "🏆",
     HEART: '❤️'
   };
+  const timeGame = 20;
   const maps = [];
   maps.push(`
     IXXXXXXXXX

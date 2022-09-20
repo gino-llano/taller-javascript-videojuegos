@@ -11,14 +11,19 @@
     <div class="game-container">
         <canvas id="game"></canvas>
         <div class="btns">
-            <button id="up">Arriba</button>
-            <button id="left">Izquierda</button>
-            <button id="right">Derecha</button>
-            <button id="down">Abajo</button>
+            <button id="up"><span></span></button>
+            <button id="left"><span></span></button>
+            <button id="right"><span></span></button>
+            <button id="down"><span></span></button>
+            <button id="pause"><span></span></button>
         </div>
         <div class="messages">
             <p>Vidas: <span id="lives"></span></p>
             <p>Tiempo: ⏲️<span id="time"></span></p>
+            <p>Tiempo récord: 🏆<span id="record-time"></span></p>
+            <p id="new-record-message"></p>
+            <p id="end-game-message"></p>
+            <button id="restart" class="">Iniciar</button>
         </div>
     </div>
     <script src="./maps.js"></script>
