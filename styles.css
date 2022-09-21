@@ -94,6 +94,10 @@ canvas
 {
     background-image: url('https://cdn-icons-png.flaticon.com/512/1214/1214679.png');
 }
+#pause.paused span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/5725/5725942.png');
+}
 .messages
 {
     display: flex;

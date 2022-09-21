@@ -25,13 +25,15 @@ function setMessage(element, message)
 }
 function setInitialValues()
 {
+    if (restartBtn.innerHTML == 'Reiniciar')
+        createMaps();
     playerPosition.x = undefined;
     lives = 3;
     level = 0;
     timeStart = Date.now();
     spanTime.innerHTML = timeGame;
     drawLives();
-    setMapRowCols();
+    mapRowCols = maps[level];
     drawMap();
     setMessage(newRecordMessage, '');
     setMessage(endGameMessage, '');
@@ -63,23 +65,17 @@ function endGame(message)
 }
 function pauseGame()
 {
-    const e = document.createElement('span');
     if (gameState == 'PLAY')
     {
         timePause = Date.now();
         gameState = 'PAUSE';
-        e.setAttribute('style', 'background-image: url("https://cdn-icons-png.flaticon.com/512/5725/5725942.png");');
-        btnPause.innerHTML = '';
-        btnPause.append(e);
+        btnPause.classList.add('paused');
     }
     else if (gameState == 'PAUSE')
     {
         timeStart += (Date.now() - timePause);
         gameState = 'PLAY';
-        const e = document.createElement('span');
-        e.setAttribute('style', 'background-image: url("https://cdn-icons-png.flaticon.com/512/1214/1214679.png");');
-        btnPause.innerHTML = '';
-        btnPause.append(e);
+        btnPause.classList.remove('paused');
     }
 }
 function setCanvasSize()
@@ -90,7 +86,7 @@ function setCanvasSize()
         canvasSize = window.innerWidth * 0.70;
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
-    elementsSize = canvasSize / 10;
+    elementsSize = canvasSize / mapSize;
     game.font = elementsSize + 'px sans-serif';
     game.textAlign = 'end';
 }
@@ -109,7 +105,7 @@ function drawTime()
     if (gameState == 'PLAY')
     {
         timeLeft = Number((timeGame- Number(((Date.now() - timeStart) / 1000).toFixed(1))).toFixed(1));
-        if (timeLeft <= 0)  endGame('😵PERDISTE😵');
+        if (timeLeft <= 0)  endGame('😵SE ACABÓ EL TIEMPO😵');
         spanTime.innerHTML = timeLeft;
     }
 }
@@ -118,34 +114,28 @@ function drawRecordTime()
     if (localStorage.getItem('recordTime') < timeLeft)
     {
         localStorage.setItem('recordTime', timeLeft);
-        setMessage(newRecordMessage, '✨NUEVO RECORD✨');
+        setMessage(newRecordMessage, '✨NUEVO RÉCORD✨');
     }
     spanRecordTime.innerHTML = localStorage.getItem('recordTime');
 }
 function drawMap()
 {
     game.clearRect(0, 0, canvasSize, canvasSize);
-    mapRowCols.forEach((row, rowIndex) => {
-        row.forEach((col, colIndex) => {
-            drawEmoji(colIndex, rowIndex, emojis[col]);
-            if (playerPosition.x == undefined && emojis[col] == '🚪')
+    for (let y=0; y<mapSize; y++)
+        for (let x=0; x<mapSize; x++)
+        {
+            const key = mapRowCols[index(x, y)];
+            drawEmoji(x, y, emojis[key]);
+            if (playerPosition.x == undefined && key == 'O')
             {
-                playerPosition.x = colIndex;
-                playerPosition.y = rowIndex;
+                playerPosition.x = x;
+                playerPosition.y = y;
             }
-        })
-    });
+        }
     drawEmoji(playerPosition.x, playerPosition.y, emojis['PLAYER']);
-    const emoji = emojis[mapRowCols[playerPosition.y][playerPosition.x]];
-    if (gameState == 'END' && emoji == '💣')
+    const key = mapRowCols[index(playerPosition.x, playerPosition.y)];
+    if (gameState == 'END' && key == 'X')
         drawEmoji(playerPosition.x, playerPosition.y, emojis['BOMB_COLLISION']);
-}
-function setMapRowCols()
-{
-    // trim elimina los espacios en blanco al inicio y final de la cadena
-    // split separa la cadena por el caracter que se pasa como argumento en un arreglo de cadenas
-    const mapRows = maps[level].trim().split('\n');
-    mapRowCols = mapRows.map(row => row.trim().split(''));
 }
 
 const btnUp = document.querySelector('#up');
@@ -162,32 +152,28 @@ btnPause.addEventListener('click', pauseGame);
 
 window.addEventListener('keydown', updateGameByKeys);
 
-function positionIsInMap(x, y)
-{
-    return 0 <= x && x < 10 && 0 <= y && y < 10;
-}
 function movePlayer(incX, incY)
 {
-    if (gameState == 'PLAY' && positionIsInMap(playerPosition.x + incX, playerPosition.y + incY))
+    if (gameState == 'PLAY')
     {
         playerPosition.x += incX;
         playerPosition.y += incY;
-        const emoji = emojis[mapRowCols[playerPosition.y][playerPosition.x]];
-        if (emoji == '💣')
+        const key = mapRowCols[index(playerPosition.x, playerPosition.y)];
+        if (key == 'X')
         {
             lives--;
-            if (lives == 0) endGame('😵PERDISTE😵');
+            if (lives == 0) endGame('😵TE QUEDASTE SIN VIDAS😵');
             else playerPosition.x = undefined;
             drawLives();
         }   
-        else if (emoji == '🎁')
+        else if (key == 'I')
         {
             if (level == maps.length - 1)
                 endGame('😎GANASTE😎');
             else
             {
                 level++;
-                setMapRowCols();
+                mapRowCols = maps[level];
             }
         }
         drawMap();
