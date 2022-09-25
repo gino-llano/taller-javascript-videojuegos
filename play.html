@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled-Game-#1/Play</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="./css/tablet.css" media="(min-width: 768px)">
+    <link rel="stylesheet" href="./css/desktop.css" media="(min-width: 1024px)">
+</head>
+<body>
+    <div class="game-container">
+        <div class="info">
+            <div class="info__item">
+                <p class="title">Vidas: </p>
+                <p id="health"></p>
+            </div>
+            <div class="info__item">
+                <p class="title">Tiempo: </p>
+                <p id="time"></p>
+            </div>
+            <div class="info__item">
+                <p class="title">Nivel: </p>
+                <p id="level"></p>
+            </div>
+            <div class="info__item">
+                <p class="title">Tiempo récord: </p>
+                <p id="record-time"></p>
+            </div>
+        </div>
+        <canvas id="game"></canvas>
+        <div class="buttons">
+            <div class="section top">
+                <button id="up"><span></span></button>
+            </div>
+            <div class="section middle">
+                <button id="left"><span></span></button>
+                <button id="pause" class=""><span></span></button>
+                <button id="right"><span></span></button>
+            </div>
+            <div class="section bottom">
+                <button id="down"><span></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="links-container">
+        <div class="links-container__item inactive" id="menu">
+            <a href="./index.html">Menú</a>
+        </div>
+        <div class="links-container__item inactive" id="restart">
+            <a href="./play.html">Reiniciar</a>
+        </div>
+    </div>
+    <script src="./maps.js"></script>
+    <script src="./game.js"></script>
+</body>
+</html>

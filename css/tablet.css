@@ -1,0 +1,12 @@
+html
+{
+    font-size: 69%;
+}
+.game-container
+{
+    --new_size: calc(min(100vw, 100vh) * 0.6);
+}
+.info
+{
+    width: var(--new_size);
+}

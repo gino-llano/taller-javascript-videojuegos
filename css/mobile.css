@@ -1,0 +1,218 @@
+/* General */
+*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html
+{
+    font-size: 62.5%;
+    --color-1: whitesmoke;
+    --color-2: #005683;
+}
+body
+{
+    background-color: var(--color-1);
+    font-family: 'Bubblegum Sans', cursive;
+}
+/* Menú */
+.menu-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.menu-container h1
+{
+    font-size: 3.6rem;
+    font-weight: bolder;
+    color: var(--color-2);
+}
+.menu-container a
+{
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--color-2);
+    font-size: 2.4rem;
+    color: var(--color-1);
+    border-radius: 8px;
+}
+/* Juego */
+button
+{
+    border: none;
+}
+.game-container
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    --size: calc(min(100vw, 100vh) * 0.8);
+}
+.info
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--color-2);
+    font-size: 1.8rem;
+    width: var(--size);
+}
+.info__item
+{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.info__item p
+{
+    margin-right: 10px;
+    color: var(--color-1);
+}
+.info__item .title
+{
+    color: whitesmoke;
+}
+canvas
+{
+    margin-top: 20px;
+    background-color: var(--color-1);
+}
+.buttons
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+    --btnSize: min(10vw, 50px);
+}
+.buttons .section
+{
+    display: flex;
+    justify-content: center;
+}
+#up, #down, #left, #right, #pause
+{
+    display: flex;
+}
+#up
+{
+    margin-bottom: calc(var(--btnSize) * 0.2);
+}
+#left, #pause
+{
+    margin-right: calc(var(--btnSize) * 0.2);
+}
+#down
+{
+    margin-top: calc(var(--btnSize) * 0.2);
+}
+#up span,
+#down span,
+#right span,
+#left span,
+#pause span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655143.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: var(--btnSize);
+    height: var(--btnSize);
+    background-color: var(--color-1);
+}
+#down span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655094.png');
+}
+#right span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655096.png');
+}
+#left span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655000.png');
+}
+
+#pause span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/1214/1214679.png');
+}
+#pause.paused span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/5725/5725942.png');
+}
+.links-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.4rem;
+}
+.links-container__item
+{
+    padding: 10px;
+    background-color:  var(--color-2);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-family: inherit;
+}
+.links-container__item a
+{
+    color: whitesmoke;
+    text-decoration: none;
+}
+.links-container__item.inactive
+{
+    display: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    border: none;
+}
+/* ¿Cómo Jugar? */
+.how-container
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.how-container__item
+{
+    color: var(--color-1);
+    background-color: var(--color-2);
+    padding: 10px;
+    border-radius: 8px;
+    width: min(70vw, 768px);
+    margin: 20px 0;
+}
+.how-container__item h2
+{
+    font-size: 2.4rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: paleturquoise;
+}
+.how-container__item p
+{
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+.how-container .links-container__item
+{
+    font-size: 2.4rem;
+}
+
+
