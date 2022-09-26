@@ -49,7 +49,7 @@ button
 .game-container
 {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,9 +90,9 @@ canvas
 {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    margin-top: 30px;
     position: relative;
-    --btnSize: 70px;
+    --btnSize: max(60px, min(15vw, 80px));
 }
 .buttons .section
 {
@@ -105,15 +105,15 @@ canvas
 }
 #up
 {
-    margin-bottom: calc(var(--btnSize) * 0.2);
+    margin-bottom: calc(var(--btnSize) * 0.4);
 }
 #left, #pause
 {
-    margin-right: calc(var(--btnSize) * 0.2);
+    margin-right: calc(var(--btnSize) * 0.4);
 }
 #down
 {
-    margin-top: calc(var(--btnSize) * 0.2);
+    margin-top: calc(var(--btnSize) * 0.4);
 }
 .buttons span
 {

@@ -2,7 +2,7 @@ html
 {
     font-size: 75%;
 }
-.info
+.buttons
 {
-    width: calc(min(100vw, 100vh) * 0.5);
+    display: none;
 }

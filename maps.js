@@ -17,7 +17,7 @@
   // Tiempo en segundos que se tiene para terminar el juego.
   const initial_time = 200;
   // Cantidad de monedas por nivel.
-  const initial_coins = 3;
+  const initial_coins = 1;
   // Ancho y alto de los mapas del juego.
   // Debe ser un número impar para que funcione el algoritmo que genera el laberinto. 
   const map_size = 13;
