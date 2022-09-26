@@ -15,12 +15,12 @@
   // Cantidad de vidas al inicio del juego.
   const initial_health = 1;
   // Tiempo en segundos que se tiene para terminar el juego.
-  const initial_time = 250;
+  const initial_time = 200;
   // Cantidad de monedas por nivel.
   const initial_coins = 3;
   // Ancho y alto de los mapas del juego.
   // Debe ser un número impar para que funcione el algoritmo que genera el laberinto. 
-  const map_size = 19;
+  const map_size = 13;
   // Arreglo que guarda los mapas del juego.
   const maps = [];
   // Objeto que le asigna un número a una dirección.

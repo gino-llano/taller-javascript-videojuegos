@@ -2,3 +2,7 @@ html
 {
     font-size: 75%;
 }
+.info
+{
+    width: calc(min(100vw, 100vh) * 0.5);
+}

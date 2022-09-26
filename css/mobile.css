@@ -54,7 +54,6 @@ button
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    --size: calc(min(100vw, 100vh) * 0.8);
 }
 .info
 {
@@ -64,8 +63,8 @@ button
     padding: 10px;
     border-radius: 8px;
     background-color: var(--color-2);
-    font-size: 1.8rem;
-    width: var(--size);
+    font-size: 2rem;
+    width: calc(min(100vw, 100vh) * 0.9);
 }
 .info__item
 {
@@ -91,9 +90,9 @@ canvas
 {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 40px;
     position: relative;
-    --btnSize: min(10vw, 50px);
+    --btnSize: 70px;
 }
 .buttons .section
 {
@@ -116,11 +115,7 @@ canvas
 {
     margin-top: calc(var(--btnSize) * 0.2);
 }
-#up span,
-#down span,
-#right span,
-#left span,
-#pause span
+.buttons span
 {
     background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655143.png');
     background-repeat: no-repeat;

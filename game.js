@@ -164,7 +164,8 @@ function Canvas()
     this.resize = function(player)
     {
         // Se calcula el ancho y alto del canvas y de los emoji.
-        let scale = window.innerWidth < 768 ? 0.8 : 0.6;
+        let scale = window.innerWidth < 768 ? 0.9 :
+                    window.innerWidth < 1024 ? 0.7 : 0.5;
         this.size = Math.min(window.innerWidth, window.innerHeight) * scale;  
         this.selector.setAttribute('width', this.size);
         this.selector.setAttribute('height', this.size);
