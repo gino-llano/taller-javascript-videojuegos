@@ -132,6 +132,7 @@ function Game()
     }
     this.handle_touch_movement = function(e)
     {
+        e.preventDefault();
         let end_touch = new Vector_2d();
         end_touch.x = e.changedTouches[0].screenX;
         end_touch.y = e.changedTouches[0].screenY;
