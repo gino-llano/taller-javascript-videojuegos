@@ -269,7 +269,8 @@ function Player()
                 if (key == 'END' && coins == initial_coins)   break;
             }
             key = maps[level][this.pos.get_index()];
-            if (key == 'END' && level == levels-1)   maps[level][this.pos.get_index()] = 'EMPTY';
+            if (key == 'END' && level == levels-1 && coins == initial_coins)
+                maps[level][this.pos.get_index()] = 'EMPTY';
         }
         return key;
     }
@@ -281,7 +282,7 @@ function Player()
         let key;
         this.pos = this.contain_position_in_map(this.pos.add(amount));
         key = maps[level][this.pos.get_index()];
-        if (key == 'WALL' || key == 'COIN' || (key == 'END' && level == levels-1))
+        if (key == 'WALL' || key == 'COIN' || (key == 'END' && level == levels-1 && coins == initial_coins))
             maps[level][this.pos.get_index()] = 'EMPTY';
         return key;
     }

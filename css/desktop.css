@@ -9,4 +9,11 @@ html
 .buttons
 {
     display: none;
+    margin: 0;
+    padding: 0;
+}
+.buttons span
+{
+    width: 0;
+    height: 0;
 }
