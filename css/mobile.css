@@ -62,7 +62,7 @@ button
     margin-top: 20px;
     padding: 10px;
     border-radius: 8px;
-    background-color: var(--color-2);
+    background-color: var(--color-1);
     font-size: 2rem;
     width: calc(min(100vw, 100vh) * 0.9);
 }
@@ -77,9 +77,13 @@ button
     margin-right: 10px;
     color: var(--color-1);
 }
+.info__item p
+{
+    color: var(--color-2);
+}
 .info__item .title
 {
-    color: whitesmoke;
+    color: cornflowerblue;;
 }
 canvas
 {
@@ -89,55 +93,17 @@ canvas
 .buttons
 {
     display: flex;
-    flex-direction: column;
     margin-top: 30px;
-    position: relative;
-    --btnSize: max(60px, min(15vw, 80px));
+    --btnSize: max(50px, min(10vw, 60px));
 }
-.buttons .section
-{
-    display: flex;
-    justify-content: center;
-}
-#up, #down, #left, #right, #pause
+.buttons button
 {
     display: flex;
 }
-#up
+#pause
 {
-    margin-bottom: calc(var(--btnSize) * 0.4);
+    margin-right: var(--btnSize);
 }
-#left, #pause
-{
-    margin-right: calc(var(--btnSize) * 0.4);
-}
-#down
-{
-    margin-top: calc(var(--btnSize) * 0.4);
-}
-.buttons span
-{
-    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655143.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: var(--btnSize);
-    height: var(--btnSize);
-    background-color: var(--color-1);
-}
-#down span
-{
-    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655094.png');
-}
-#right span
-{
-    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655096.png');
-}
-#left span
-{
-    background-image: url('https://cdn-icons-png.flaticon.com/512/4655/4655000.png');
-}
-
 #pause span
 {
     background-image: url('https://cdn-icons-png.flaticon.com/512/1214/1214679.png');
@@ -145,6 +111,23 @@ canvas
 #pause.paused span
 {
     background-image: url('https://cdn-icons-png.flaticon.com/512/5725/5725942.png');
+}
+#power span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2731/2731634.png');
+}
+#power.active span
+{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2731/2731653.png');
+}
+.buttons span
+{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: var(--btnSize);
+    height: var(--btnSize);
+    background-color: var(--color-1);
 }
 .links-container
 {
@@ -186,8 +169,8 @@ canvas
 }
 .how-container__item
 {
-    color: var(--color-1);
-    background-color: var(--color-2);
+    color: var(--color-2);
+    background-color: var(--color-1);
     padding: 10px;
     border-radius: 8px;
     width: min(70vw, 768px);
@@ -198,7 +181,7 @@ canvas
     font-size: 2.4rem;
     font-weight: normal;
     margin-bottom: 10px;
-    color: paleturquoise;
+    color: cornflowerblue;
 }
 .how-container__item p
 {

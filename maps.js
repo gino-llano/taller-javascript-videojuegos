@@ -1,21 +1,24 @@
-  const emojis =
+  const images = 
   {
-      EMPTY: ' ',
-      START: '🏁',
-      WALL: '🟦',
-      END: "🚩",
-      PLAYER: "🙂",
-      LOSE: '😵',
-      WIN: '🤪',
-      COIN: '🪙',
-      BLOCK: '⬛'
+    END: new Image(),
+    PLAYER: new Image(),
+    LOSE: new Image(),
+    WIN: new Image(),
+    COIN: new Image()
   };
+  images.END.src = 'https://cdn-icons-png.flaticon.com/512/3223/3223283.png';
+  images.PLAYER.src = 'https://cdn-icons-png.flaticon.com/512/3404/3404173.png';
+  images.LOSE.src = 'https://cdn-icons-png.flaticon.com/512/8538/8538367.png';
+  images.WIN.src = 'https://cdn-icons-png.flaticon.com/512/1933/1933704.png';
+  images.COIN.src = 'https://cdn-icons-png.flaticon.com/512/2529/2529396.png';
+
+
   // Cantidad de niveles del juego.
   const levels = 10;
   // Cantidad de vidas al inicio del juego.
   const initial_health = 1;
   // Tiempo en segundos que se tiene para terminar el juego.
-  const initial_time = 200;
+  const initial_time = 100;
   // Cantidad de monedas por nivel.
   const initial_coins = 1;
   // Ancho y alto de los mapas del juego.
