@@ -132,7 +132,6 @@ function Game()
     }
     this.handle_touch_movement = function(e)
     {
-        e.preventDefault();
         let end_touch = new Vector_2d();
         end_touch.x = e.changedTouches[0].screenX;
         end_touch.y = e.changedTouches[0].screenY;
@@ -354,7 +353,6 @@ function start_game()
     game.buttons.pause.addEventListener('click', () => game.pause());
     game.buttons.power.addEventListener('click', () => game.buttons.update_power());
     game.canvas.selector.addEventListener('touchstart', (e) => game.get_start_touch(e));
-    game.canvas.selector.addEventListener('touchmove', (e) => e.preventDefault());
     game.canvas.selector.addEventListener('touchend', (e) => game.handle_touch_movement(e));
 
     interval = setInterval(() => game.automatic_function(), 100);

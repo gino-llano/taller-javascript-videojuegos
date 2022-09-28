@@ -15,6 +15,7 @@ body
 {
     background-color: var(--color-1);
     font-family: 'Bubblegum Sans', cursive;
+    overscroll-behavior: contain;
 }
 /* Menú */
 .menu-container
