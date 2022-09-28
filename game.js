@@ -127,22 +127,32 @@ function Game()
     
     this.get_start_touch = function(e)
     {
-        this.start_touch.x = e.changedTouches[0].screenX;
-        this.start_touch.y = e.changedTouches[0].screenY;
+        if (game_state == 'PLAY')
+        {
+            this.start_touch.x = e.changedTouches[0].screenX;
+            this.start_touch.y = e.changedTouches[0].screenY;
+        }
     }
     this.handle_touch_movement = function(e)
     {
-        let end_touch = new Vector_2d();
-        end_touch.x = e.changedTouches[0].screenX;
-        end_touch.y = e.changedTouches[0].screenY;
-        let absX = Math.abs(end_touch.x - this.start_touch.x);
-        let absY = Math.abs(end_touch.y - this.start_touch.y);
-        let amount;
-        if (absX < absY)
-            amount = this.start_touch.y < end_touch.y ? new Vector_2d(0, 1) : new Vector_2d(0, -1);                             
-        else
-            amount = this.start_touch.x < end_touch.x ? new Vector_2d(1, 0) : new Vector_2d(-1, 0);  
-        this.handle_movement(amount, !this.buttons.power.classList.contains('active'));
+        if (game_state == 'PLAY')
+        {
+            let end_touch = new Vector_2d();
+            end_touch.x = e.changedTouches[0].screenX;
+            end_touch.y = e.changedTouches[0].screenY;
+
+            if (20 < Math.sqrt((end_touch.x - this.start_touch.x)**2 + (end_touch.y - this.start_touch.y)**2))
+            {
+                let absX = Math.abs(end_touch.x - this.start_touch.x);
+                let absY = Math.abs(end_touch.y - this.start_touch.y);
+                let amount;
+                if (absX < absY)
+                    amount = this.start_touch.y < end_touch.y ? new Vector_2d(0, 1) : new Vector_2d(0, -1);                             
+                else
+                    amount = this.start_touch.x < end_touch.x ? new Vector_2d(1, 0) : new Vector_2d(-1, 0);  
+                this.handle_movement(amount, !this.buttons.power.classList.contains('active'));
+            }
+        }
     }
 }
 // Objeto que representa a los botones
@@ -353,8 +363,9 @@ function start_game()
     window.addEventListener('keydown', (event) => game.read_key_input(event));
     game.buttons.pause.addEventListener('click', () => game.pause());
     game.buttons.power.addEventListener('click', () => game.buttons.update_power());
-    game.canvas.selector.addEventListener('touchstart', (e) => game.get_start_touch(e));
-    game.canvas.selector.addEventListener('touchend', (e) => game.handle_touch_movement(e));
+    const body = document.querySelector('body');
+    body.addEventListener('touchstart', (e) => game.get_start_touch(e));
+    body.addEventListener('touchend', (e) => game.handle_touch_movement(e));
 
     interval = setInterval(() => game.automatic_function(), 100);
 }
