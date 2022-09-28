@@ -49,7 +49,7 @@ button
 .game-container
 {
     width: 100%;
-    min-height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,6 +135,7 @@ canvas
     flex-direction: column;
     align-items: center;
     font-size: 2.4rem;
+    margin-top: 40px;
 }
 .links-container__item
 {

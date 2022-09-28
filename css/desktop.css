@@ -2,6 +2,10 @@ html
 {
     font-size: 75%;
 }
+.game-container
+{
+    height: 100vh;
+}
 .buttons
 {
     display: none;
